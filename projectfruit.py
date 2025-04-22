@@ -6,8 +6,8 @@ import numpy as np
 from tensorflow.keras.preprocessing import image
 
 # Path to your training and test image folders
-train_dir = 'D:/Collague work/2nd years/AI/project/trainning'
-val_dir = 'D:/Collague work/2nd years/AI/project/test'
+train_dir = 'C:\\Users\\Acer\\Documents\\GitHub\\AIFinalRealShit\\trainning'
+val_dir = 'C:\\Users\\Acer\\Documents\\GitHub\\AIFinalRealShit\\test'
 
 # Normalize pixel values (from 0–255 to 0–1)
 train_datagen = ImageDataGenerator(
@@ -25,7 +25,7 @@ val_datagen = ImageDataGenerator(rescale=1./255)
 train_data = train_datagen.flow_from_directory(
     train_dir,
     target_size=(100, 100),
-    batch_size=100,
+    batch_size=500,
     class_mode='categorical'
 )
 
@@ -33,7 +33,7 @@ train_data = train_datagen.flow_from_directory(
 val_data = val_datagen.flow_from_directory(
     val_dir,
     target_size=(100, 100),
-    batch_size=100,
+    batch_size=500,
     class_mode='categorical'
 )
 
@@ -85,7 +85,7 @@ plt.show()
 
 # Load and preprocess an image for prediction
 img = image.load_img(
-    'D:/Collague work/2nd years/AI/project/test/Tomato/r0_52.jpg',
+    'C:\\Users\\Acer\\Documents\\GitHub\\AIFinalRealShit\\test\\Apple\\r1_71.jpg',
     target_size=(100, 100)
 )
 img_array = image.img_to_array(img) / 255.0
