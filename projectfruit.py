@@ -4,10 +4,13 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import matplotlib.pyplot as plt
 import numpy as np
 from tensorflow.keras.preprocessing import image
+from tkinter import Tk
+from tkinter.filedialog import askopenfilename
 
 # Path to your training and test image folders
 train_dir = 'C:\\Users\\Acer\\Documents\\GitHub\\AIFinalRealShit\\trainning'
 val_dir = 'C:\\Users\\Acer\\Documents\\GitHub\\AIFinalRealShit\\test'
+
 
 # Normalize pixel values (from 0–255 to 0–1)
 train_datagen = ImageDataGenerator(
@@ -25,7 +28,7 @@ val_datagen = ImageDataGenerator(rescale=1./255)
 train_data = train_datagen.flow_from_directory(
     train_dir,
     target_size=(100, 100),
-    batch_size=500,
+    batch_size=200,
     class_mode='categorical'
 )
 
@@ -33,7 +36,7 @@ train_data = train_datagen.flow_from_directory(
 val_data = val_datagen.flow_from_directory(
     val_dir,
     target_size=(100, 100),
-    batch_size=500,
+    batch_size=200,
     class_mode='categorical'
 )
 
@@ -83,28 +86,25 @@ plt.xlabel('Epoch')
 plt.ylabel('Accuracy')
 plt.show()
 
-# Load and preprocess an image for prediction
-img = image.load_img(
-    'C:\\Users\\Acer\\Documents\\GitHub\\AIFinalRealShit\\test\\Apple\\r1_71.jpg',
-    target_size=(100, 100)
+
+Tk().withdraw()  # ซ่อนหน้าต่างหลักของ tkinter
+file_path = askopenfilename(
+    title='Select an image file',
+    filetypes=[('Image Files', '*.png *.jpg *.jpeg')]
 )
-img_array = image.img_to_array(img) / 255.0
-img_array = np.expand_dims(img_array, axis=0)
 
-# Predict the class
-prediction = model.predict(img_array)
-predicted_class = np.argmax(prediction)
+if file_path:
+    # โหลดและเตรียมรูปภาพ
+    img = image.load_img(file_path, target_size=(100, 100))
+    img_array = image.img_to_array(img) / 255.0
+    img_array = np.expand_dims(img_array, axis=0)
 
-# Get class labels
-class_names = list(train_data.class_indices.keys())
-print("Predicted fruit:", class_names[predicted_class])
+    # ทำนายคลาส
+    prediction = model.predict(img_array)
+    predicted_class = np.argmax(prediction)
+    class_names = list(train_data.class_indices.keys())
+    print("Predicted fruit:", class_names[predicted_class])
+else:
+    print("No image selected.")
+    
 
-
-'''from tensorflow.keras.callbacks import ModelCheckpoint
-
-checkpoint = ModelCheckpoint(
-    'best_model.h5',
-    monitor='val_accuracy',
-    save_best_only=True,
-    mode='max'
-)'''
