@@ -12,14 +12,6 @@ Performance Graphs: Automatically plots training vs. validation accuracy using m
 
 GPU Support: Configured to leverage NVIDIA GPUs for faster training (if available).
 
-📦 Your-Repository-Name
- ┣ 📂 trainning/           # Your training images (organized by fruit subfolders)
- ┣ 📂 test/                # Your validation/test images (organized by fruit subfolders)
- ┣ 📜 projectfruit.py      # The script to train the model and save it
- ┣ 📜 result.py            # The script to load the model and predict a selected image
- ┣ 📜 fruit_model.keras    # The saved model (generated after running projectfruit.py)
- ┗ 📜 class_names.json     # The saved class labels (generated after running projectfruit.py)
-
  🛠️ Prerequisites
 Make sure you have Python installed, along with the following libraries:
 
