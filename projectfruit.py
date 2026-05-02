@@ -1,4 +1,3 @@
-# projectfruit.py
 import os
 import json
 import tensorflow as tf
