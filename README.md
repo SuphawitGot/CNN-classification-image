@@ -2,6 +2,9 @@
 
 This project is a Convolutional Neural Network (CNN) built with Python and TensorFlow/Keras to classify images of different fruits. It features a split architecture: one script for training and saving the model, and another script with a simple GUI to select an image and make predictions instantly.
 
+![Demo image](p2demo1.png)
+
+
 ## Features
 * **Custom CNN Architecture:** Uses multiple Convolutional and MaxPooling layers to extract features from images.
 * **Separated Workflows:** Train the model once and use the saved model for endless predictions without retraining.
